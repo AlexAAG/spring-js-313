@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+<body>
+<div>
+    <h1>User's page</h1>
+    <p>User name: <span th:text="${user.getName()}">VALUE</span></p>
+    <p>User job: <span th:text="${user.getJob()}">VALUE</span></p>
+    <p>User age: <span th:text="${user.getAge()}">VALUE</span></p>
+    <hr/>
+    <br/>
+    <br/>
+    <br/>
+    <hr/>
+    <a href="/logout">Logout</a>
+</div>
+</body>
+</html>

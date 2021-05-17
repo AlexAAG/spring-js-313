@@ -18,10 +18,105 @@
 
         <dependency>
             <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.2.13.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.thymeleaf</groupId>
+            <artifactId>thymeleaf-spring5</artifactId>
+            <version>3.0.9.RELEASE</version>
+        </dependency>
+
+        <!-- Hibernate -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.4.30.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>5.4.30.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.23</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.1-api</artifactId>
+            <version>1.0.2.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>2.3.9.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>6.1.7.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-dbcp</artifactId>
+            <version>9.0.10</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.8.9</version>
+        </dependency>
+
+        <!--Security-->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
@@ -34,19 +129,153 @@
             <version>${spring.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>4.0.0</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.thymeleaf</groupId>
-            <artifactId>thymeleaf-spring5</artifactId>
-            <version>3.0.9.RELEASE</version>
-        </dependency>
     </dependencies>
+
+<!--    <dependencies>-->
+
+<!--        &lt;!&ndash;new&ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework</groupId>-->
+<!--            <artifactId>spring-core</artifactId>-->
+<!--            <version>5.2.14.RELEASE</version>-->
+<!--        </dependency>-->
+<!--        &lt;!&ndash;&ndash;&gt;-->
+
+<!--        &lt;!&ndash;new&ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework</groupId>-->
+<!--            <artifactId>spring-context</artifactId>-->
+<!--            <version>5.2.13.RELEASE</version>-->
+<!--        </dependency>-->
+<!--        &lt;!&ndash;&ndash;&gt;-->
+
+<!--        <dependency>-->
+<!--            <groupId>org.springframework</groupId>-->
+<!--            <artifactId>spring-webmvc</artifactId>-->
+<!--            <version>${spring.version}</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.security</groupId>-->
+<!--            <artifactId>spring-security-web</artifactId>-->
+<!--            <version>${spring.version}</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.security</groupId>-->
+<!--            <artifactId>spring-security-config</artifactId>-->
+<!--            <version>${spring.version}</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>javax.servlet</groupId>-->
+<!--            <artifactId>javax.servlet-api</artifactId>-->
+<!--            <version>4.0.0</version>-->
+<!--            <scope>provided</scope>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>org.thymeleaf</groupId>-->
+<!--            <artifactId>thymeleaf-spring5</artifactId>-->
+<!--            <version>3.0.9.RELEASE</version>-->
+<!--        </dependency>-->
+
+<!--        &lt;!&ndash; Hibernate &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.hibernate</groupId>-->
+<!--            <artifactId>hibernate-core</artifactId>-->
+<!--            <version>5.4.30.Final</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>org.hibernate</groupId>-->
+<!--            <artifactId>hibernate-entitymanager</artifactId>-->
+<!--            <version>5.4.30.Final</version>-->
+<!--        </dependency>-->
+
+<!--        &lt;!&ndash; new work&ndash;&gt;-->
+
+<!--        <dependency>-->
+<!--            <groupId>junit</groupId>-->
+<!--            <artifactId>junit</artifactId>-->
+<!--            <version>4.12</version>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>mysql</groupId>-->
+<!--            <artifactId>mysql-connector-java</artifactId>-->
+<!--            <version>8.0.23</version>-->
+<!--        </dependency>-->
+
+<!--        &lt;!&ndash; new work&ndash;&gt;-->
+
+<!--        <dependency>-->
+<!--            <groupId>org.hibernate.javax.persistence</groupId>-->
+<!--            <artifactId>hibernate-jpa-2.1-api</artifactId>-->
+<!--            <version>1.0.2.Final</version>-->
+<!--        </dependency>-->
+
+<!--        &lt;!&ndash; delete сломанная депенденси &ndash;&gt;-->
+
+<!--&lt;!&ndash;        <dependency>&ndash;&gt;-->
+<!--&lt;!&ndash;            <groupId>org.springframework.data</groupId>&ndash;&gt;-->
+<!--&lt;!&ndash;            <artifactId>spring-data-jpa</artifactId>&ndash;&gt;-->
+<!--&lt;!&ndash;            <version>2.3.9.RELEASE</version>&ndash;&gt;-->
+<!--&lt;!&ndash;        </dependency>&ndash;&gt;-->
+
+<!--&lt;!&ndash;        &lt;!&ndash;new&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;        <dependency>&ndash;&gt;-->
+<!--&lt;!&ndash;            <groupId>org.springframework</groupId>&ndash;&gt;-->
+<!--&lt;!&ndash;            <artifactId>spring-web</artifactId>&ndash;&gt;-->
+<!--&lt;!&ndash;            <version>${spring.version}</version>&ndash;&gt;-->
+<!--&lt;!&ndash;        </dependency>&ndash;&gt;-->
+
+<!--        <dependency>-->
+<!--            <groupId>org.springframework</groupId>-->
+<!--            <artifactId>spring-orm</artifactId>-->
+<!--            <version>${spring.version}</version>-->
+<!--        </dependency>-->
+
+<!--&lt;!&ndash;        <dependency>&ndash;&gt;-->
+<!--&lt;!&ndash;            <groupId>org.springframework</groupId>&ndash;&gt;-->
+<!--&lt;!&ndash;            <artifactId>spring-tx</artifactId>&ndash;&gt;-->
+<!--&lt;!&ndash;            <version>${spring.version}</version>&ndash;&gt;-->
+<!--&lt;!&ndash;        </dependency>&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <dependency>&ndash;&gt;-->
+<!--&lt;!&ndash;            <groupId>org.hibernate.validator</groupId>&ndash;&gt;-->
+<!--&lt;!&ndash;            <artifactId>hibernate-validator</artifactId>&ndash;&gt;-->
+<!--&lt;!&ndash;            <version>6.1.7.Final</version>&ndash;&gt;-->
+<!--&lt;!&ndash;        </dependency>&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <dependency>&ndash;&gt;-->
+<!--&lt;!&ndash;            <groupId>org.apache.tomcat</groupId>&ndash;&gt;-->
+<!--&lt;!&ndash;            <artifactId>tomcat-dbcp</artifactId>&ndash;&gt;-->
+<!--&lt;!&ndash;            <version>9.0.10</version>&ndash;&gt;-->
+<!--&lt;!&ndash;        </dependency>&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <dependency>&ndash;&gt;-->
+<!--&lt;!&ndash;            <groupId>org.aspectj</groupId>&ndash;&gt;-->
+<!--&lt;!&ndash;            <artifactId>aspectjweaver</artifactId>&ndash;&gt;-->
+<!--&lt;!&ndash;            <version>1.8.9</version>&ndash;&gt;-->
+<!--&lt;!&ndash;        </dependency>&ndash;&gt;-->
+<!--&lt;!&ndash;        &lt;!&ndash;end&ndash;&gt;&ndash;&gt;-->
+
+
+<!--        &lt;!&ndash; SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder" &ndash;&gt;-->
+<!--        &lt;!&ndash;        <dependency>&ndash;&gt;-->
+<!--        &lt;!&ndash;            <groupId>org.slf4j</groupId>&ndash;&gt;-->
+<!--        &lt;!&ndash;            <artifactId>slf4j-api</artifactId>&ndash;&gt;-->
+<!--        &lt;!&ndash;            <version>1.7.30</version>&ndash;&gt;-->
+<!--        &lt;!&ndash;        </dependency>&ndash;&gt;-->
+<!--        &lt;!&ndash;        <dependency>&ndash;&gt;-->
+<!--        &lt;!&ndash;            <groupId>org.slf4j</groupId>&ndash;&gt;-->
+<!--        &lt;!&ndash;            <artifactId>slf4j-simple</artifactId>&ndash;&gt;-->
+<!--        &lt;!&ndash;            <version>${slf4j.version}</version>&ndash;&gt;-->
+<!--        &lt;!&ndash;        </dependency>&ndash;&gt;-->
+
+<!--    </dependencies>-->
 
     <build>
         <pluginManagement>
