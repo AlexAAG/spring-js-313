@@ -22,9 +22,9 @@
             <td th:utext="${user.getName()}">count</td>
             <td th:utext="${user.getJob()}">size</td>
             <td th:utext="${user.getAge()}">even</td>
-            <td><div> <a th:href="@{/admin/users/{id}/edit (id=${user.getId()})}">Edit</a></div> </td>
+            <td><div> <a th:href="@{/admin/users-update/{id}/edit (id=${user.getId()})}">Edit</a></div> </td>
             <td>
-                <form th:method="DELETE" th:action="@{/admin/users/{id} (id=${user.getId()})}">
+                <form th:method="GET" th:action="@{/admin/users-delete/{id} (id=${user.getId()})}">
                     <input type="submit" value="Delete">
                 </form>
             </td>

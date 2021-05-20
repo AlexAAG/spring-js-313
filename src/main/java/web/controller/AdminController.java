@@ -9,6 +9,7 @@ import web.service.UserService;
 
 
 @Controller
+//@RestController
 @RequestMapping("/admin")
 public class AdminController {
 
@@ -43,19 +44,22 @@ public class AdminController {
         return "redirect:/admin/users";
     }
 
-    @GetMapping("/users/{id}/edit")
+    //20-05 rework+++ UPDATE GET
+    @GetMapping("/users-update/{id}/edit")
     public String edit(@PathVariable("id") int id, Model model) {
         model.addAttribute("user", userService.getUserById(id));
         return "edit";
     }
 
-    @PatchMapping("/users/{id}")
+    //20-05 rework+++ UPDATE GET-EDIT button
+    @GetMapping("/users-update/{id}")
     public String update(@ModelAttribute("user") User user, @PathVariable("id") int id) {
         userService.updateUser(user);
         return "redirect:/admin/users";
     }
 
-    @DeleteMapping("/users/{id}")
+    //20-05 rework+++ UPDATE GET-DELETE button
+    @GetMapping("/users-delete/{id}")
     public String delete(@PathVariable("id") int id) {
         userService.removeUser(id);
         return "redirect:/admin/users";
