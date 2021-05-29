@@ -1,0 +1,109 @@
+<!--20-05 modal BUTTON DELETE (modal window in end of page)-->
+<td>
+
+    <!--20-05 modal-->
+    <div>
+
+        <!--20-05 Modal window DELETE-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <!--                <div class="modal-body">-->
+                    <!--                    son of beatch!1111111111-->
+
+                    <!--                    <table border="1">-->
+                    <!--                        <tr>-->
+                    <!--                            <th>id</th>-->
+                    <!--                            <th>Имя</th>-->
+                    <!--                            <th>Работа</th>-->
+                    <!--                            <th>Возраст</th>-->
+                    <!--                            <th>Edit</th>-->
+                    <!--                            <th>Delete</th>-->
+                    <!--                        </tr>-->
+
+                    <!--                        <tr th:each="user : ${users}">-->
+                    <!--                            <td><div> <a th:href="@{/admin/users/{id}(id=${user.getId()})}" th:utext="${user.getId()}"></a></div> </td>-->
+                    <!--                            <td th:utext="${user.getName()}">count</td>-->
+                    <!--                            <td th:utext="${user.getJob()}">size</td>-->
+                    <!--                            <td th:utext="${user.getAge()}">even</td>-->
+                    <!--                            <td><div> <a th:href="@{/admin/users-update/{id}/edit (id=${user.getId()})}">Edit</a></div> </td>-->
+                    <!--                            <td>-->
+                    <!--                                <form th:method="GET" th:action="@{/admin/users-delete/{id} (id=${user.getId()})}">-->
+                    <!--                                    <input type="submit" value="Delete" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">-->
+                    <!--                                </form>-->
+
+                    <!--                                &lt;!&ndash;                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">&ndash;&gt;-->
+                    <!--                                &lt;!&ndash;                                    DELETE&ndash;&gt;-->
+                    <!--                                &lt;!&ndash;                                </button>&ndash;&gt;-->
+                    <!--                            </td>-->
+                    <!--                        </tr>-->
+                    <!--                    </table>-->
+
+                    <!--                </div>-->
+
+                    <div class="modal-body" >
+
+                        <form class="text-center" th:id="'myformdel' + ${user.getId()}" th:method="GET" th:action="@{/admin/users-delete/{id} (id=${user.getId()})}" th:object="${user}">
+
+                            <p th:action="@{/admin/users-delete/{id} (id=${user.getId()})}" th:object="${user}"></p>
+
+                            <label><b>ID</b></label>
+                            <br/>
+                            <input class="" type="text"  name="id" th:value="${user.id}" disabled >
+                            <br/>
+
+                            <label class="col-form-label"><b>First name</b></label>
+                            <br/>
+                            <input type="text"  name="name" th:value="${user.name}" />
+                            <br/>
+
+                            <label for="job"><b>Job</b></label>
+                            <br/>
+                            <input type="text"  name="job" th:value="${user.job}" />
+                            <br/>
+
+                            <label for="age"><b>Age</b></label>
+                            <br/>
+                            <input type="text"  name="age" th:value="${user.age}" />
+                            <br/>
+
+                            <label for="password"><b>Password</b></label>
+                            <br/>
+                            <!--<input type="text"  name="password" th:value="${user.password}" />-->
+                            <input type="text"  name="password" />
+                            <br/>
+
+                        </form>
+
+                        <form th:method="GET" th:action="@{/admin/users-delete/{id} (id=${user.getId()})}">
+                            <input type="submit" value="DeleteTEST" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        </form>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                        <button th:form="*{'myformdel' + {user.getId()}}" type="submit" class="btn btn-primary">del</button>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--END-->
+
+
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        DELETE
+    </button>
+</td>
