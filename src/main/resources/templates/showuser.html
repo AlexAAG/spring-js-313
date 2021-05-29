@@ -14,20 +14,15 @@
     <div class="bg-dark text-white" style="height: 50px; line-height: 50px; padding: 0px 28px 0px 28px;"><b><span th:utext="${user.getName()}">VALUE</span></b> with roles: <span style="text-transform:uppercase" th:each="role : ${user.getRole()}" th:utext="${role.getName()}">VALUE</span><a style="color: #D3D3D3; text-decoration: none; text-align: right; float: right" href="/logout">Logout</a></div>
 </header>
 
-
 <div class="container-fluid px-0" style="background-color: #ececec">
     <div class="row no-gutters vh-100">
 
         <!--27-05 left panel-->
         <div class="col-md-2  pt-3" style="background-color: #ffffff">
             <ul class="nav flex-column">
-<!--
-                <button onclick="window.location.href = '/admin';" type="submit" style="text-decoration: none" class="btn btn-link btn-lg btn-block"><div style="float: left">Admin</div></button>
--->
                 <button onclick="window.location.href = '/user';" type="submit" class="btn btn-primary btn-lg btn-block"><div style="float: left">User</div></button>
             </ul>
-        </div><!--END left panel-->
-
+        </div>
 
         <!--27-05 right panel-->
         <div class="col-md-10 p-4">
@@ -49,12 +44,12 @@
                                     </thead>
 
                                     <tbody>
-                                    <tr>
-                                        <td th:utext="${user.getId()}">eeee</td>
-                                        <td th:utext="${user.getName()}">count</td>
-                                        <td th:utext="${user.getJob()}">size</td>
-                                        <td th:utext="${user.getAge()}">even</td>
-                                    </tr>
+                                        <tr>
+                                            <td th:utext="${user.getId()}">eeee</td>
+                                            <td th:utext="${user.getName()}">count</td>
+                                            <td th:utext="${user.getJob()}">size</td>
+                                            <td th:utext="${user.getAge()}">even</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

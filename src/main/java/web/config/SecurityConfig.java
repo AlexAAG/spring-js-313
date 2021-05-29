@@ -17,7 +17,6 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
-
     private final SuccessUserHandler successUserHandler;
 
     @Autowired

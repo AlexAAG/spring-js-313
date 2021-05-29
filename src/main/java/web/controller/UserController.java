@@ -29,18 +29,9 @@ public class UserController {
         return "users";
     }
 
-//    @GetMapping("/users/{id}")
-//    public String show(@PathVariable("id") int id, Model model) {
-//        model.addAttribute("user", userService.getUserById(id));
-//        return "show";
-//    }
-
     //27-05 Principal возвращает залогиненного пользователя
-    //@GetMapping("/{id}") work
     @GetMapping("/user")
     public String show(Principal principal, Model model) {
-//        model.addAttribute("user", userService.findByName(principal.getName()));
-//        return "show";
         User username = userService.findByName(principal.getName());
         model.addAttribute("user", username);
         return "show";

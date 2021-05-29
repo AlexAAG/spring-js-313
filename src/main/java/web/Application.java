@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.IOException;
 
-//20-05
 //21-05 open homepage
 @SpringBootApplication
 public class Application {
@@ -20,7 +19,7 @@ public class Application {
         }
     }
 
-    //21-05
+    //21-05 open homepage
     private static void openHomePage() throws IOException {
         Runtime rt = Runtime.getRuntime();
         rt.exec("rundll32 url.dll,FileProtocolHandler " + "http://localhost:8080/admin");

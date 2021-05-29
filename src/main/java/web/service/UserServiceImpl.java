@@ -16,12 +16,6 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
     private RoleDao roleDao;
 
-    //28-05
-//    public UserServiceImpl(UserDao userDao) {
-//        this.userDao = userDao;
-//    }
-
-
     public UserServiceImpl(UserDao userDao, RoleDao roleDao) {
         this.userDao = userDao;
         this.roleDao = roleDao;
