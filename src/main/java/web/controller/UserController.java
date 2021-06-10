@@ -37,7 +37,6 @@ public class UserController {
         return "show";
     }
 
-    //28-05
     @GetMapping("/userpage")
     public String showUser(Principal principal, Model model) {
         User username = userService.findByName(principal.getName());
@@ -45,12 +44,10 @@ public class UserController {
         return "showuser";
     }
 
-    //05-06 TEST
     @GetMapping("/user/test123")
     public String show2(Principal principal, Model model) {
         User username = userService.findByName(principal.getName());
         model.addAttribute("user", username);
         return "showtest2";
     }
-
 }

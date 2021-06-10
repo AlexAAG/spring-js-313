@@ -19,7 +19,7 @@ public class AdminController {
         this.userService = userService;
     }
 
-    //30-05 TEST
+    //30-05 rest TEST
     @GetMapping("/test123")
     public String listUsersAdminTest() {
         return "usersadmintest2";

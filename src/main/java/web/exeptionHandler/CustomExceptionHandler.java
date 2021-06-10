@@ -21,5 +21,4 @@ public class CustomExceptionHandler {
         return new ResponseEntity<>(dataInfoHandler.getInstanceWithInfo(e.getMessage()),
                 HttpStatus.CONFLICT);
     }
-
 }

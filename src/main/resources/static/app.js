@@ -11,39 +11,16 @@ const userFetchService = {
         'Content-Type': 'application/json',
         'Referer': null
     },
-    // bodyAdd : async function(user) {return {'method': 'POST', 'headers': this.head, 'body': user}},
+
     findAllUsers: async () => await fetch('/admin/test'),
-    findAllRoles: async () => await fetch('/admin/test/roles'),
     findOneUser: async (id) => await fetch(`/users-update/${id}/edit`),
-    // addNewUser: async (user) => await fetch('/users-add', {method: 'POST', headers: userFetchService.head, body: JSON.stringify(user)}),
-    //addNewUser: async (user) => await fetch('/users-add'),
 
     updateUser: async (user, id) => {
         console.log(`123 ${JSON.stringify(user)}`,id);
         return await fetch(`/users-update/${id}`, {method: 'PUT', headers: userFetchService.head, body: JSON.stringify(user)})
     },
 
-    //08-06
     addNewUser: async (user) => await fetch('/users-add', {method: 'POST', headers: userFetchService.head, body: JSON.stringify(user)}),
-
-    // addNewUser: async (user) => {
-    //     console.log(`123 ${JSON.stringify(user)}`);
-    //     return await fetch(`/users-add`, {method: 'POST', headers: userFetchService.head, body: JSON.stringify(user)})
-    // },
-
-    // updateUser: async (user, id) => {
-    //     $.post(`/users-update11/${id}`, user, function(response){
-    //         console.log(response);
-    //     });
-    // },
-
-    // updateUser: async (user, id) => {
-    //     $.get(`/users-update11/${id}`, function(response){
-    //         console.log(response);
-    //     });
-    // },
-
-
     deleteUser: async (id) => await fetch(`users-delete/${id}`, {method: 'GET', headers: userFetchService.head})
 }
 
@@ -54,46 +31,10 @@ async function getTableWithUsers() {
 
     await userFetchService.findAllUsers()
         .then(res => res.json())
-
-        //06-06
-        // .then(userDTOs => {
-        //     userDTOs.forEach(user => {
-        //         let dataArray = user.role;
-        //          for(let o in dataObject) {
-        //              dataArray.push(dataObject[o]);
-        //          }
-        //     })
-
-
         .then(userDTOs => {
             userDTOs.forEach(user => {
-
-                //06-06
-                // let dataArray = user.role;
-                // for(let o in dataArray) {
-                //     //dataArray.push(user.dataArray[o]);
-                //     alert(dataArray[o]);
-                // }
-
-                //06-06
-                //let  arr = ["I", "go", "home", "qqw","I", "go", "home", "qqw","I", "go", "home", "qqw"];
                 let arr = user.role;
                 console.log(arr[0]);
-                // console.log(arr.length);
-                // console.log(arr[0]);
-                // ["Bilbo", "Gandalf", "Nazgul"].forEach(console.log);
-                // arr.forEach((item, index, array) => {
-                //     console.log(`${item} имеет позицию ${index} в ${array}`);
-                // });
-
-                // let tooth = {
-                //     statusList123: [
-                //         {id: 1, code: "G", "decode": "Здоров"},
-                //         {id: 2, code: "S", "decode": "Пломба"},
-                //         {id: 3, code: "C", "decode": "Коронка"},
-                //         {id: 4, code: "I", "decode": "Искусственный зуб"},
-                //     ]
-                // };
 
                 //06-06 вытаскиваем из сета нужный нам элемент
                 //foreach работает только в области действия переменной
@@ -101,7 +42,6 @@ async function getTableWithUsers() {
                 arr.map(role => {
                     console.log(`id: ${role.id}, name: ${role.name}`);
 
-                    //html code
                     let tableFilling2 = `$(
                         <tr>
                             <td>${user.id}</td>
@@ -110,14 +50,8 @@ async function getTableWithUsers() {
                             <td>${user.age}</td>  
                             <!--06-06 вывод СЕТА РОЛЕЙ! Нужно вытащить конкретную роль-->
                             <td>${role.name}</td>
-                      
-                            <!--<td></td>-->
                             <td>
-                            <!--рабочая кнопка-->
-                             <!--<button type="button" data-userid="${user.id}" data-action="edit" class="btn btn-info btn-sm" 
-                                data-bs-toggle="modal" data-bs-target="#editgsdvcdscsdcs">Edit3</button>-->
-                                
-                            <!--01-06 пример-->
+
                             <button type="button" data-userid="${user.id}" data-action="edit" class="btn btn-info btn-sm" 
                                 data-toggle="modal" style="color: #ffffff" data-target="#someDefaultModal">Edit</button>
                          
@@ -127,43 +61,13 @@ async function getTableWithUsers() {
                             <button type="button" data-userid="${user.id}" data-action="delete1" class="btn btn-danger btn-sm" 
                                 data-toggle="modal" data-target="#someDefaultModal">Delete</button>
                             </td>
-                            
-
-                            
-                            
                         </tr>
                     )`;
                     table.append(tableFilling2);
                 });
-
-                // let tableFilling = `$(
-                //
-                // )`;
-                // table.append(tableFilling);
             })
         })
 
-    // //05-06  ROLES
-    // await userFetchService.findAllRoles()
-    //     .then(res => res.json())
-    //     .then(roleDTOs => {
-    //         roleDTOs.forEach(role => {
-    //             let tableFillingRole = `$(
-    //                     <tr>
-    //                         <td>${role.name}</td>
-    //                         <td>${role.id}</td>
-    //
-    //
-    //
-    //
-    //
-    //                     </tr>
-    //             )`;
-    //             table.append(tableFillingRole);
-    //         })
-    //     })
-
-    //01-06
     // обрабатываем нажатие на любую из кнопок edit или delete
     // достаем из нее данные и отдаем модалке, которую к тому же открываем
     $("#mainTableWithUsers").find('button').on('click', (event) => {
@@ -180,67 +84,22 @@ async function getTableWithUsers() {
 }
 
 
-//08-06
 async function getNewUserForm() {
     let button = $(`#SliderNewUserForm`);
     let form = $(`#defaultSomeForm`);
-    //08-06
     let buttontab = $(`#addNewUserButton`);
-    //let tab1 = $(`#nav-home-tab`);
     let tab1 = $(`#myTabContent`);
 
     button.on('click', () => {
         if (form.attr("data-hidden") === "true") {
-            // form.attr('data-hidden', 'false');
-            // form.hide();
-            // button.text('Hide panel');
+
         } else {
             form.attr('data-hidden', 'true');
             form.show();
             button.text('New user');
         }
     })
-
-    // //08-06
-    // $('#addNewUserButton').submit(function () {
-    //     $("#myTabContent").tabs({
-    //         active: $("#mainTableWithUsers")
-    //     });
-    // });
-
-
-    // //08-06 TAB!!!!!!!!!!
-    // //$('#nav-tab a[href="#nav-home-tab"]').tab('show') // Select tab by name
-    // //https://stackru.com/questions/15862472/pereklyuchit-vkladku-pri-nazhatii-knopki
-    // buttontab.on('click', () => {
-    //     if (tab1.attr("data-hidden") === "true") {
-    //         // form.attr('data-hidden', 'false');
-    //         // form.hide();
-    //         // button.text('Hide panel');
-    //     } else {
-    //         tab1.attr('data-hidden', 'true');
-    //         //tab1.show();
-    //         //tab1.text('Show panel123');
-    //         tab1.tab('show');
-    //     }
-    // })
-    // $('#nav-tab a[href="#myTabContent"]').tab('show') // Select tab by name
-
-    // document.querySelector("#addNewUserButton").onclick = function(){
-    //     alert("Вы нажали на кнопку");
-    //     open("#nav-home-tab");
-    // }
-
 }
-
-// document.querySelector("#addNewUserButton").onclick = function(){
-//     alert("Вы нажали на кнопку");
-//     open("#mainTableWithUsers");
-// }
-
-// document.getElementById("addNewUserButton").addEventListener("click", function(e){
-//     openTab(e, "tab2");
-// })
 
 $('#nav-tab a[href="#nav-home-tab"]').tab('show') // Select tab by name
 
@@ -262,11 +121,9 @@ async function getDefaultModal() {
         switch (action) {
             case 'edit':
                 editUser(thisModal, userid);        //функция editUser ниже. Передает элемент-событие + attr('data-userid')
-                // deleteUser(thisModal, userid);   // модалку открывает
                 break;
             case 'delete1':
                 deleteUser1(thisModal, userid);
-                // editUser(thisModal, userid);
                 break;
             case 'delete':
                 deleteUser(thisModal, userid);
@@ -286,7 +143,7 @@ async function getDefaultModal() {
 
 
 //дергает этот метод из свитч-кейс switch (action)
-// редактируем юзера из модалки редактирования, забираем данные, отправляем
+//редактируем юзера из модалки редактирования, забираем данные, отправляем
 async function editUser(modal, id) {        //функция editUser выше. Получает элемент-событие + attr('data-userid')
     let preuser = await userFetchService.findOneUser(id);  //подгружаем инфу из json замапленного на (users-update/{id}/edit)
     let user = preuser.json();                  //json декодирует ответ в формате JSON
@@ -320,124 +177,19 @@ async function editUser(modal, id) {        //функция editUser выше. 
                 <label class="col-form-label" ><b>Password</b></label><br>
                 
                 <input class="form-control" type="password" id="password"><br>      <!--type password скрывает пас-->
-                <!--<label class="col-form-label" style="padding: 10px 0px 0px 0px;"><b>Role</b></label><br>
-                <input class="form-control" type="text" id="role" value="Role"><br>-->
                 <label><b>Role</b>
                     <select id="mesto" multiple size="2" name="roles" class="form-control" style="width:466px">
                         <option>ROLE_ADMIN</option>
                         <option>ROLE_USER</option>
-                        
-                        <!--<option 
-                                text="${role.name}"
-                                value="${role.name}"></option>-->
                     </select>
                 </label>
-                <!--<div id="mesto111"></div>-->
             </form>
                
                     `;
             modal.find('.modal-body').append(bodyForm2);
         });
     })
-    //08-06
-    // await userFetchService.findAllRoles()
-    //     .then(res => res.json())
-    //     .then(roleDTOs => {
-    //         roleDTOs.forEach(role => {
-    //             let tableFillingRole5 = `$(
-    //                     <tr>
-    //                         <td>${role.name}</td>
-    //                         <td>${role.id}</td>
-    //
-    //
-    //
-    //
-    //
-    //                     </tr>
-    //             )`;
-    //             $("#mesto11").html(tableFillingRole5);
-    //         })
-    //     })
 
-    //06-06? not work map.
-    // await userFetchService.findAllRoles()
-    //     .then(res => res.json())
-    //     .then(userDTOs => {
-    //         userDTOs.forEach(user => {
-    //             let arr = user.role;
-    //
-    //             console.log(arr);
-    //
-    //             arr.map(role => {
-    //                 console.log(`test111 id: ${role.id}, name: ${role.name}`);
-    //
-    //                 //html code
-    //                 let tableFillingRole3 = `$(
-    //                         <option>${role.name}</option>
-    //                 )`;
-    //                 $("#mesto").html(tableFillingRole3);
-    //             });
-    //
-    //         })
-    //     })
-
-    // //06-06  ROLES ALL
-    // await userFetchService.findAllRoles()
-    //     .then(res => res.json())
-    //     .then(roleDTOs => {
-    //         roleDTOs.forEach(role => {
-    //             let arr = user.role;
-    //             arr.map(role => {
-    //                 console.log(`id: ${role.id}, name: ${role.name}`);
-    //
-    //             let tableFillingRole3 = `$(
-    //                 ${role.name}
-    //             )`;
-    //
-    //             $("#mesto").html(tableFillingRole3);
-    //             });
-    //         })
-    //     })
-
-
-    //08-06
-    //getElementById метод интерфейса документ, возвращающий элемент, которому соотвествует id (в html)
-    //selectedOptions содержит список <option>элементов. Пример let collection = itemList.selectedOptions;
-    // let roles = selectRole(Array.from(document.getElementById("addRole").selectedOptions)
-    //     .map(r => r.value));
-
-
-    //08-06
-    // <div class="form-group">
-    //     <label><b>Role</b></label>
-    // <select multiple class="form-control form-control-sm" name="addRole"
-    // size=2 id="addRole">
-    //     <option value="ADMIN">ADMIN</option>
-    //     <option value="USER">USER</option>
-    //     </select>
-    //     </div>
-
-    // await userFetchService.findAllRoles()
-    //     .then(res => res.json())
-    //     .then(roleDTOs => {
-    //         roleDTOs.forEach(role => {
-    //             console.log(`role name edit:${role.name}`);
-    //
-    //             let i = 0;
-    //             while (i < 3) { // выводит 0, затем 1, затем 2
-    //                 console.log( i );           //i
-    //                 i++;
-    //             }
-    //
-    //             let tableFillingRole3 = `$(
-    //
-    //                     <option>${role.name}</option>
-    //
-    //         )`;
-    //             console.log(`role name tableFillingRole3:${tableFillingRole3}`)
-    //             $("#mesto111").html(tableFillingRole3);
-    //         })
-    //     })
 
     $("#editButton").on('click', async () => {
         let id = modal.find("#id").val().trim();            //val достаём значение из find("#id")
@@ -454,7 +206,6 @@ async function editUser(modal, id) {        //функция editUser выше. 
         };
         console.log(data,id);
         const response = await userFetchService.updateUser(data, id);       //наш массив используем
-        //очень похоже, что в выше id попадает стринг?????????????????????
 
         console.log(response);
 
@@ -477,8 +228,6 @@ async function editUser(modal, id) {        //функция editUser выше. 
     })
 }
 
-
-
 //04-06 delete modal
 async function deleteUser1(modal, id) {        //функция editUser выше. Получает элемент-событие + attr('data-userid')
     //await userFetchService.deleteUser(id);
@@ -488,15 +237,10 @@ async function deleteUser1(modal, id) {        //функция editUser выш�
     modal.find('.modal-title').html('Delete user');   //find вернет все элементы modal-title, находящиеся внутри modal
                                                     //html строка которую нужно вставить в элемент
 
-
-
-
-
     console.log(user.id);
     let editButton1 = `<button type="button" data-userid="${user.id}" data-action="delete" class="btn btn-danger"
     data-toggle="modal" data-target="#someDefaultModal" id="editButton1">Delete</button>`;
 
-    // let editButton = `<button  class="btn btn-primary" id="editButton">Edit111</button>`;
     let closeButton = `<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>`
     modal.find('.modal-footer').append(closeButton);
     modal.find('.modal-footer').append(editButton1);     //найти modal-footer добавить html код в конце
@@ -518,7 +262,6 @@ async function deleteUser1(modal, id) {        //функция editUser выш�
                     <select id="mesto" multiple size="2" name="roles" class="form-control" style="width:466px" disabled>
                         <option>ROLE_ADMIN</option>
                         <option>ROLE_USER</option>
-                       
                     </select>
                 </label>
             </form>
@@ -532,7 +275,7 @@ async function deleteUser1(modal, id) {        //функция editUser выш�
         let job = modal.find("#job").val().trim();
         let age = modal.find("#age").val().trim();
         let password = modal.find("#password").val().trim();
-        let data = {                                        //???? некий массив чтоли????
+        let data = {
             id: id,
             name: name,
             job: job,
@@ -540,10 +283,7 @@ async function deleteUser1(modal, id) {        //функция editUser выш�
             password: password
         };
         console.log(data,id);
-        //const response = await userFetchService.updateUser(data, id);       //наш массив используем
         const response = await userFetchService.deleteUser(id);
-        //очень похоже, что в выше id попадает стринг?????????????????????
-
 
         console.log(response);
 
@@ -576,72 +316,11 @@ async function deleteUser(modal, id) {
     modal.find('.modal-footer').append(closeButton);
 }
 
-
-//04-06
-// async function addNewUser() {
-//     $('#addNewUserButton').click(async () =>  {
-//          let addUserForm = $('#defaultSomeForm')
-//
-//         // let login = addUserForm.find('#AddNewUserLogin').val().trim();
-//         // let password = addUserForm.find('#AddNewUserPassword').val().trim();
-//         // let age = addUserForm.find('#AddNewUserAge').val().trim();
-//
-//         let name = addUserForm.find("#name").val().trim();        //trim убирает пробелы в начале и конце из результата val
-//         let job = addUserForm.find("#job").val().trim();
-//         let age = addUserForm.find("#age").val().trim();
-//         let password = addUserForm.find("#password").val().trim();
-//         // let role = addUserForm.find("#role").val().trim();
-//         let data = {                                        //???? некий массив чтоли????
-//             name: name,
-//             job: job,
-//             age: age,
-//             password: password
-//         };
-//
-//         // let data = {
-//         //     login: login,
-//         //     password: password,
-//         //     age: age
-//         // }
-//         const response = await userFetchService.addNewUser(data);
-//         if (response.ok) {
-//             getTableWithUsers();
-//             // addUserForm.find('#AddNewUserLogin').val('');
-//             // addUserForm.find('#AddNewUserPassword').val('');
-//             // addUserForm.find('#AddNewUserAge').val('');
-//
-//             addUserForm.find("#name").val('');        //trim убирает пробелы в начале и конце из результата val
-//             addUserForm.find("#job").val('');
-//             addUserForm.find("#age").val('');
-//             addUserForm.find("#password").val('');
-//         } else {
-//             let body = await response.json();
-//             let alert = `<div class="alert alert-danger alert-dismissible fade show col-12" role="alert" id="sharaBaraMessageError">
-//                             ${body.info}
-//                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-//                                 <span aria-hidden="true">&times;</span>
-//                             </button>
-//                         </div>`;
-//             addUserForm.prepend(alert)
-//         }
-//     })
-// }
-
-
 //08-06 test
 async function addNewUser() {
     $('#addNewUserButton').click(async () =>  {
         let addUserForm = $('#defaultSomeForm')
-        // let login = addUserForm.find('#AddNewUserLogin').val().trim();
-        // let password = addUserForm.find('#AddNewUserPassword').val().trim();
-        // let job = addUserForm.find('#AddNewUserJob').val().trim();
-        // //let age = addUserForm.find('#AddNewUserAge').val().trim();
-        // let data = {
-        //     name: login,                //слева "name" из бека
-        //     password: password,
-        //     job: job
-        //     // age: age
-        // }
+
         let name = addUserForm.find('#name').val().trim();
         let job = addUserForm.find('#job').val().trim();
         let age = addUserForm.find('#age').val().trim();
@@ -651,14 +330,10 @@ async function addNewUser() {
             job: job,
             age: age,
             password: password
-            // age: age
         }
         const response = await userFetchService.addNewUser(data);
         if (response.ok) {
             getTableWithUsers();
-            // addUserForm.find('#AddNewUserLogin').val('');
-            // addUserForm.find('#AddNewUserPassword').val('');
-            // addUserForm.find('#AddNewUserAge').val('');
 
             addUserForm.find('#name').val('');
             addUserForm.find('#job').val('');
@@ -675,8 +350,6 @@ async function addNewUser() {
             addUserForm.prepend(alert)
         }
 
-        //08-06
-
             let i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("card");
             for (i = 0; i < tabcontent.length; i++) {
@@ -686,43 +359,14 @@ async function addNewUser() {
             for (i = 0; i < tablinks.length; i++) {
                 tablinks[i].classList.remove("active");
             }
-            // document.getElementById("lolkek").style.display = "block";
-            // document.getElementById("lolkek").classList.add("active");
-            // document.getElementById("nav-home-tab").classList.add("active");
-            // document.getElementById("nav-home").classList.add("active", "show");
-            // evt.currentTarget.className += " active";
 
             document.getElementById("lolkek").style.display = "block";
             document.getElementById("lolkek").classList.add("active");
             document.getElementById("nav-home-tab").classList.add("active");
             document.getElementById("nav-home").classList.add("active", "show");
-        //document.getElementById("card").style.display = "block";
 
-
-        document.getElementsByClassName("card").style.display = "block";
-// Get the element with id="defaultOpen" and click on it
+            document.getElementsByClassName("card").style.display = "block";
+        // Get the element with id="defaultOpen" and click on it
         document.getElementById("lolkek").click();
-        // document.getElementsByClassName("card").style.display = "block";
-
-        //end
     })
 }
-
-//08-06
-// function openCity(evt, cityName) {
-//     let i, tabcontent, tablinks;
-//     tabcontent = document.getElementsByClassName("tabcontent");
-//     for (i = 0; i < tabcontent.length; i++) {
-//         tabcontent[i].style.display = "none";
-//     }
-//     tablinks = document.getElementsByClassName("tablinks");
-//     for (i = 0; i < tablinks.length; i++) {
-//         tablinks[i].classList.remove("active");
-//     }
-//     document.getElementById(cityName).style.display = "block";
-//     document.getElementById(cityName + "-tab").classList.add("active");
-//     // evt.currentTarget.className += " active";
-// }
-//
-// // Get the element with id="defaultOpen" and click on it
-// document.getElementById("London-tab").click();

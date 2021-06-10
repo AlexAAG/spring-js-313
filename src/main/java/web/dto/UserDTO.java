@@ -9,11 +9,8 @@ import java.util.Set;
 public class UserDTO {
     private long id;
     private String name;
-//    private String password;
     private String job;
     private int age;
-   //private Set<Role> role;
 
-//    31-05 ROLEDTO?
     private Set<RoleDTO> role;
 }
