@@ -350,23 +350,29 @@ async function addNewUser() {
             addUserForm.prepend(alert)
         }
 
-            let i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("card");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-            }
-            tablinks = document.getElementsByClassName("nav-link");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].classList.remove("active");
-            }
+        //     let i, tabcontent, tablinks;
+        //     tabcontent = document.getElementsByClassName("card");
+        //     for (i = 0; i < tabcontent.length; i++) {
+        //         tabcontent[i].style.display = "none";
+        //     }
+        //     tablinks = document.getElementsByClassName("nav-link");
+        //     for (i = 0; i < tablinks.length; i++) {
+        //         tablinks[i].classList.remove("active");
+        //     }
+        //
+        //     document.getElementById("lolkek").style.display = "block";
+        //     document.getElementById("lolkek").classList.add("active");
+        //     document.getElementById("nav-home-tab").classList.add("active");
+        //     document.getElementById("nav-home").classList.add("active", "show");
+        //
+        //     document.getElementsByClassName("card").style.display = "block";
+        // // Get the element with id="defaultOpen" and click on it
+        // document.getElementById("lolkek").click();
 
-            document.getElementById("lolkek").style.display = "block";
-            document.getElementById("lolkek").classList.add("active");
-            document.getElementById("nav-home-tab").classList.add("active");
-            document.getElementById("nav-home").classList.add("active", "show");
-
-            document.getElementsByClassName("card").style.display = "block";
-        // Get the element with id="defaultOpen" and click on it
-        document.getElementById("lolkek").click();
+        //10-06
+        document.getElementById("nav-home").classList.add("active", "show");
+        document.getElementById("defaultSomeForm1").classList.remove("active", "show");
+        document.getElementById("nav-home-tab").classList.add("active");
+        document.getElementById("SliderNewUserForm").classList.remove("active");
     })
 }
