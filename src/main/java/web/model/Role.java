@@ -18,8 +18,9 @@ public class Role implements GrantedAuthority {
         @Column
         private String name;
 
-        @ManyToMany(fetch = FetchType.EAGER,mappedBy = "role")
-        private Set<User> users;
+        //31-05 либо закомментируем, либо пишем DTO
+//        @ManyToMany(fetch = FetchType.EAGER,mappedBy = "role")
+//        private Set<User> users;
 
         public Role() {
 
@@ -51,11 +52,12 @@ public class Role implements GrantedAuthority {
                 this.name = name;
         }
 
-        public Set<User> getUsers() {
-                return users;
-        }
-
-        public void setUsers(Set<User> users) {
-                this.users = users;
-        }
+        //31-05 либо закомментируем, либо пишем DTO
+//        public Set<User> getUsers() {
+//                return users;
+//        }
+//
+//        public void setUsers(Set<User> users) {
+//                this.users = users;
+//        }
 }

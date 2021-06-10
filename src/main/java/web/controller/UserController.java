@@ -44,4 +44,13 @@ public class UserController {
         model.addAttribute("user", username);
         return "showuser";
     }
+
+    //05-06 TEST
+    @GetMapping("/user/test123")
+    public String show2(Principal principal, Model model) {
+        User username = userService.findByName(principal.getName());
+        model.addAttribute("user", username);
+        return "showtest2";
+    }
+
 }

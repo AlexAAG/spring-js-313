@@ -19,6 +19,12 @@ public class AdminController {
         this.userService = userService;
     }
 
+    //30-05 TEST
+    @GetMapping("/test123")
+    public String listUsersAdminTest() {
+        return "usersadmintest2";
+    }
+
     @GetMapping(value = "")
     public String listUsersAdmin(Model model) {
         model.addAttribute("users", userService.listUsers());

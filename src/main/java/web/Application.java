@@ -11,6 +11,7 @@ public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
 
+        
         //21-05
         try {
             openHomePage();
