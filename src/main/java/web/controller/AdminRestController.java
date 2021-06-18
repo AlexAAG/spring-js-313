@@ -99,7 +99,8 @@ public class AdminRestController {
         }
     }
 
-    @GetMapping("/users-delete/{id}")
+    //17-06
+    @DeleteMapping("/users-delete/{id}")
     public ResponseEntity<DataInfoHandler> apiDeleteUser(@PathVariable("id") int id) {
         userService.removeUser(id);
         return new ResponseEntity<>(new DataInfoHandler("User was deleted"), HttpStatus.OK);

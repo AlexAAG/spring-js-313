@@ -21,7 +21,8 @@ const userFetchService = {
     },
 
     addNewUser: async (user) => await fetch('/users-add', {method: 'POST', headers: userFetchService.head, body: JSON.stringify(user)}),
-    deleteUser: async (id) => await fetch(`users-delete/${id}`, {method: 'GET', headers: userFetchService.head})
+    deleteUser: async (id) => await fetch(`/users-delete/${id}`, {method: 'DELETE', headers: userFetchService.head})
+    // deleteUser: async (id) => await fetch(`users-delete/${id}`, {method: 'GET', headers: userFetchService.head})
 }
 
 //31-05 allusers
@@ -32,6 +33,9 @@ async function getTableWithUsers() {
     await userFetchService.findAllUsers()
         .then(res => res.json())
         .then(userDTOs => {
+            //console.log(stringForming(user, role));
+            //stringForming(user, role);
+
             userDTOs.forEach(user => {
                 let arr = user.role;
                 console.log(arr[0]);
@@ -42,28 +46,11 @@ async function getTableWithUsers() {
                 arr.map(role => {
                     console.log(`id: ${role.id}, name: ${role.name}`);
 
-                    let tableFilling2 = `$(
-                        <tr>
-                            <td>${user.id}</td>
-                            <td>${user.name}</td>
-                            <td>${user.job}</td>   
-                            <td>${user.age}</td>  
-                            <!--06-06 вывод СЕТА РОЛЕЙ! Нужно вытащить конкретную роль-->
-                            <td>${role.name}</td>
-                            <td>
-
-                            <button type="button" data-userid="${user.id}" data-action="edit" class="btn btn-info btn-sm" 
-                                data-toggle="modal" style="color: #ffffff" data-target="#someDefaultModal">Edit</button>
-                         
-                            </td>
-                            <td>
-                            <!--02-06 кнопка Delete-->
-                            <button type="button" data-userid="${user.id}" data-action="delete1" class="btn btn-danger btn-sm" 
-                                data-toggle="modal" data-target="#someDefaultModal">Delete</button>
-                            </td>
-                        </tr>
-                    )`;
-                    table.append(tableFilling2);
+                    //let tableFilling2 = stringForming(user, role);
+                    //16-06
+                    //let avava = refer(user);
+                    //console.log("getTableWithUsers: "+refer(user));
+                    table.append(stringForming(user, role));
                 });
             })
         })
@@ -74,14 +61,120 @@ async function getTableWithUsers() {
         let defaultModal = $('#someDefaultModal');
 
         let targetButton = $(event.target);
-        let buttonUserId = targetButton.attr('data-userid');
+        let buttonUserId = targetButton.attr('data-userid');    //17-06 сохраняем значение id в переменную
         let buttonAction = targetButton.attr('data-action');
 
         defaultModal.attr('data-userid', buttonUserId);
         defaultModal.attr('data-action', buttonAction);     //устанавливает значение buttonAction атрибуту data-action
         defaultModal.modal('show');                         //показывает модальное окно. Название окна defaultModal
     })
+
+    //16-06
+    $(function (){
+        $('#refresh14').click(refer);        //кнопка с id refresh1 при клике запускает функцию refer //уникальный id в html
+    });
+
+    //18-06
+    $(function (){
+        $('#deletetestbtn4').click(deleteusertest);        //кнопка с id refresh1 при клике запускает функцию refer //уникальный id в html
+    });
+
 }
+
+
+//15-06
+function stringForming(user, role) {
+    return `
+            <tr id="${user.id}" class="userid-${user.id}">
+                <td>${user.id}</td>
+                <td id="user-name-${user.id}">${user.name}</td>
+                <td id="user-job-${user.id}">${user.job}</td>   
+                <td id="user-age-${user.id}">${user.age}</td>  
+                <!--06-06 вывод СЕТА РОЛЕЙ! Нужно вытащить конкретную роль-->
+                <td id="user-role-${user.id}">${role.name}</td>
+                <td>
+
+                <button type="button" data-userid="${user.id}" data-action="edit" class="btn btn-info btn-sm" 
+                    data-toggle="modal" style="color: #ffffff" data-target="#someDefaultModal">Edit</button>
+             
+                </td>
+                <td>
+                <!--02-06 кнопка Delete-->
+                <button type="button" data-userid="${user.id}" data-action="delete1" class="btn btn-danger btn-sm" 
+                    data-toggle="modal" data-target="#someDefaultModal">Delete</button>
+                </td>
+                
+                
+            </tr>
+        `;
+
+}
+
+
+//18-06
+async function deleteusertest(id) {
+
+    console.log(id);
+
+    const slaktest = await userFetchService.deleteUser(id)     //obj obj попадает    //on click? //userid берется из поля id кнопки
+
+    console.log(slaktest);
+
+    if(slaktest.status == 200) {
+        let testslak2 = document.querySelector(`.userid-${id}`);    //весь html элемент
+        console.log(testslak2);
+        testslak2.remove();
+    }
+}
+
+// //16-06
+// async function refer(user) {
+//
+//     //16-06
+//     //var counter = document.getElementById("counter").value;
+//     await userFetchService.findAllUsers()
+//         .then(res => res.json())
+//         .then(userDTOs => {
+//             userDTOs.forEach(user => {
+//                 let arr = user.id;
+//                 console.log("fr3: " + user.id)
+//
+//                 var idUser = user.id;
+//                 console.log("func refer: "+user.id);
+//                 console.log("fr2: "+user)
+//
+//                 var a = Math.ceil(Math.random() * 9) + '';
+//                 var b = Math.ceil(Math.random() * 9) + '';
+//
+//                 var code = a + b;
+//                 //16-06
+//                 //document.getElementById(counter).value = code;
+//                 document.getElementById("numcode4").value = code;   //id numcode должен быть уникальный! в html
+//
+//                 //17-06
+//                 $('#someDefaultModal').modal('show');
+//             });
+//         })
+//
+//     //16-06
+//     // var idUser = user.id;
+//     // console.log("func refer: "+user.id);
+//     // console.log("fr2: "+user)
+//     //
+//     // var a = Math.ceil(Math.random() * 9) + '';
+//     // var b = Math.ceil(Math.random() * 9) + '';
+//     //
+//     // var code = a + b;
+//     // //16-06
+//     // //document.getElementById(counter).value = code;
+//     // document.getElementById("numcode4").value = code;   //id numcode должен быть уникальный! в html
+//
+// }
+
+// $(function (){
+//     $('#refresh15').click(refer);        //кнопка с id refresh1 при клике запускает функцию refer //уникальный id в html
+// });
+//end
 
 
 async function getNewUserForm() {
@@ -114,11 +207,11 @@ async function getDefaultModal() {
     }).on("show.bs.modal", (event) => {     //"on" устанавливает обработчики событий на выбранные элементы страницы.
         let thisModal = $(event.target);    //event.target содержит элемент, на котором сработало событие
         let userid = thisModal.attr('data-userid'); //attr название атрибута, которое нужно получить
-        let action = thisModal.attr('data-action');
+        let action1 = thisModal.attr('data-action');
         //data-userid конкретный юзер на кнопке
         //data-action edit на кнопке
 
-        switch (action) {
+        switch (action1) {
             case 'edit':
                 editUser(thisModal, userid);        //функция editUser ниже. Передает элемент-событие + attr('data-userid')
                 break;
@@ -204,7 +297,7 @@ async function editUser(modal, id) {        //функция editUser выше. 
             age: age,
             password: password
         };
-        console.log(data,id);
+        console.log('toServer ',data,id);
         const response = await userFetchService.updateUser(data, id);       //наш массив используем
 
         console.log(response);
@@ -212,8 +305,19 @@ async function editUser(modal, id) {        //функция editUser выше. 
         console.log(response.ok);
 
         if (response.ok) {
-            getTableWithUsers();                //getTableWithUsers мейн юзеры
+
+            //18-06
+            document.getElementById(`user-name-${data.id}`).innerText = `${data.name}`;
+            document.getElementById(`user-job-${data.id}`).innerText = `${data.job}`;
+            document.getElementById(`user-age-${data.id}`).innerText = `${data.age}`;
+            //document.getElementById(`user-password-${data.id}`).innerText = `${data.password}`;
+            //
+
+
+
+            //getTableWithUsers();                //getTableWithUsers мейн юзеры
             modal.modal('hide');                //скрытие модалки
+
         } else {                                    //если ответ кривой - вылетает ошибка в модалке
             let body = await response.json();       //${body.info} ниже не попадает инфа
             let alert = `<div class="alert alert-danger alert-dismissible fade show col-12" role="alert" id="sharaBaraMessageError">
@@ -238,8 +342,25 @@ async function deleteUser1(modal, id) {        //функция editUser выш�
                                                     //html строка которую нужно вставить в элемент
 
     console.log(user.id);
-    let editButton1 = `<button type="button" data-userid="${user.id}" data-action="delete" class="btn btn-danger"
-    data-toggle="modal" data-target="#someDefaultModal" id="editButton1">Delete</button>`;
+
+
+    //17-06
+    let editButton1 = `
+    <button class="btn btn-danger" data-toggle="modal" data-target="#someDefaultModal" id="editButton1" 
+        onclick="deleteusertest(${id})">Delete</button>`;
+
+    //17-06
+    // //let divEl = document.getElementById(user.id);
+    // //divEl.insertAdjacentHTML("afterend", editButton1);
+    // let idDiv = 270;
+    // const div = document.createElement('div');
+    // // div.innerHTML = `<button type="button" data-userid="${user.id}" data-action="delete" class="btn btn-danger"
+    // // data-toggle="modal" data-target="#someDefaultModal" id="editButton1">Delete</button>`;
+    //
+    // div.innerHTML = `vvvvvvvvvvvvvvvv<button  class="btn btn-primary" id="editButton22">Edit</button>`;
+    // //divEl.appendChild(btn);
+    // document.getElementById(idDiv).appendChild(div);
+    //
 
     let closeButton = `<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>`
     modal.find('.modal-footer').append(closeButton);
@@ -269,6 +390,15 @@ async function deleteUser1(modal, id) {        //функция editUser выш�
         modal.find('.modal-body').append(bodyForm);
     })
 
+    //17-06
+    $("#editButton22").on('click', async () => {
+        await userFetchService.deleteUser(id);
+
+    })
+
+    //end
+
+
     $("#editButton1").on('click', async () => {
         let id = modal.find("#id").val().trim();            //val достаём значение из find("#id")
         let name = modal.find("#name").val().trim();        //trim убирает пробелы в начале и конце из результата val
@@ -288,6 +418,10 @@ async function deleteUser1(modal, id) {        //функция editUser выш�
         console.log(response);
 
         console.log(response.ok);
+
+        //17-06
+        // document.getElementById('266').appendChild(editButton1);
+        // console.log(document.getElementById('266').appendChild(editButton1));
 
         if (response.ok) {
             getTableWithUsers();                //getTableWithUsers мейн юзеры
@@ -376,3 +510,4 @@ async function addNewUser() {
         document.getElementById("SliderNewUserForm").classList.remove("active");
     })
 }
+
